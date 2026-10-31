@@ -4,42 +4,31 @@ import sys
 
 
 def csvPath(fileName: str) -> Path | None:
-    
+
     if not fileName:
         return None
-    
+
     currentPath: Path = Path.cwd() / fileName
-    
+
     if currentPath.suffix != ".csv" or not currentPath.exists():
         return None
 
     return currentPath
 
 
-def reader(documentPath: str):
+def reader(documentPath: str) -> list[dict]:
+
     path = csvPath(documentPath)
-    
+
     if not path:
         print("O arquivo não existe ou não é CSV")
-        sys.exit("Código encerrado com sucesso.")  
+        sys.exit("Código encerrado com sucesso.")
 
-    dataframe = [str]
+    dataframe: list[dict] = []
 
-    with open(path, "r") as csvFile:
-        reader = csv.reader(csvFile, delimiter=" ", quotechar="|")
-        line = 0
+    with open(path, "r", encoding="utf-8", newline="") as csvFile:
+        reader = csv.DictReader(csvFile)
         for row in reader:
-            string_line = ",".join(row)
-            new_list = string_line.split(",")
-            print("linha completa com split: ", string_line)
-            print("linha completa com split: ", new_list)
+            dataframe.append(row)
 
-            line += 1
-            #     if line == 0:
-            print("linha completa com split: ", new_list[0])
-        #         print(" ".join(row))
-        #         line += 1
-        #     else:
-        #         print(f"\t Coluna1 {row[0]}")
-        #         line += 1
-        # print(f"Readed {line} lines.")
+    return dataframe
