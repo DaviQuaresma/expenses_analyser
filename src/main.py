@@ -1,7 +1,7 @@
 import argparse
 # import unittest
 
-from src import reader, analyser
+from src import reader, validator
 
 
 def exe():
@@ -10,9 +10,9 @@ def exe():
     parser.add_argument('filename', type=str, help="O arquivo tem que ter a extensão junto. EX: arquivo.csv")
     args = parser.parse_args()
     
-    dataframe = reader(args.filename)
+    dt = reader(args.filename)
     
-    analyser(dataframe)
+    validated_dt = validator(dt)
         
     
 if __name__ == "__main__":
