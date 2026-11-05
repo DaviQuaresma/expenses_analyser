@@ -1,7 +1,13 @@
 data,descricao,categoria,valor
 2026-10-01,Supermercado,Alimentacao,250.90
-2026-10-02,,Transporte,180.00
+2026-11-02,,Transporte,180.00
 2026-10-03,Internet,Moradia,120.00
-2026-10-04,Restaurante,,75.50
-2026-10-05,Aplicativo de transporte,Transporte,32.00
+2026-03-04,Restaurante,,75.50
+2026-06-05,Aplicativo de transporte,Transporte,32.00
 2026-10-06,Farmacia,Saude,48.90
+2026-11-01,Varejo,Alimentacao,150.90
+2026-10-02,Uber,Transporte,180.00
+2026-05-03,Luz,Moradia,220.00
+2026-04-04,Restaurante,,75.50
+2026-12-05,Aplicativo de transporte,Transporte,32.00
+2026-05-06,Hospital,Saude,448.90

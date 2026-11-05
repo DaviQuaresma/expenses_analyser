@@ -1,7 +1,7 @@
 import argparse
 # import unittest
 
-from src import reader, validator
+from src import reader, validator, analyser
 
 
 def exe():
@@ -13,6 +13,8 @@ def exe():
     dt = reader(args.filename)
     
     validated_dt = validator(dt)
+    
+    analyser(validated_dt)
         
     
 if __name__ == "__main__":
