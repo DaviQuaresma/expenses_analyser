@@ -1,7 +1,7 @@
 import argparse
 # import unittest
 
-from src import reader, validator, analyser
+from src import reader, validator, analyser, report
 
 
 def exe():
@@ -16,7 +16,7 @@ def exe():
     
     totals, total, media, bigger_data = analyser(validated_dt)
     
-    print(totals, total, media, bigger_data, valid, invalid)
+    report(totals, total, media, bigger_data, valid, invalid)
         
 if __name__ == "__main__":
     exe()
