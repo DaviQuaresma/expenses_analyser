@@ -21,21 +21,29 @@ def changeMoney(money: str) -> dc:
 
 
 def validator(dt: list[dict]):
+    
+    invalid = 0
+    valid = 0
+    
     for data in dt:
-        for key, value in data.items():
-            if key == "data":
-                unformated_date = value
-                formated_date = changeDate(unformated_date)
-                data[key] = formated_date
+        if "data" in data:
+            unformated_date = data["data"]
+            data["data"] = changeDate(unformated_date)
 
-            if key == "categoria" and not value:
-                data[key] = "N/A"
+        if not data.get("descricao"):
+            print(f"Removendo dicionário inválido: {data}")
+            dt.remove(data)
+            invalid += 1
+            
+        if not data.get("categoria"):
+            print(f"Removendo dicionário inválido: {data}")
+            dt.remove(data)
+            invalid += 1
 
-            if key == "descricao" and not value:
-                data[key] = "N/A"
-
-            if key == "valor":
-                unformated_money = value
-                formated_money = changeMoney(unformated_money)
-                data[key] = formated_money
-    return dt
+        if "valor" in data:
+            unformated_money = data["valor"]
+            data["valor"] = changeMoney(unformated_money)
+            
+        valid += 1
+        
+    return dt, valid, invalid
