@@ -12,10 +12,11 @@ def exe():
     
     dt = reader(args.filename)
     
-    validated_dt = validator(dt)
+    validated_dt, valid, invalid = validator(dt)
     
-    analyser(validated_dt)
+    totals, total, media, bigger_data = analyser(validated_dt)
+    
+    print(totals, total, media, bigger_data, valid, invalid)
         
-    
 if __name__ == "__main__":
     exe()
