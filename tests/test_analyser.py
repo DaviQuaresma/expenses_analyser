@@ -1,5 +1,5 @@
 import unittest
-from src.analyser import biggerValue
+from src.analyser import bigger_value
 
 
 class TestValidator(unittest.TestCase):
@@ -15,5 +15,5 @@ class TestValidator(unittest.TestCase):
 
         expect_result: dict = {"categoria": "Saude", "valor": 1444.50}
 
-        result = biggerValue(raw_data)
+        result = bigger_value(raw_data)
         self.assertEqual(result, expect_result)

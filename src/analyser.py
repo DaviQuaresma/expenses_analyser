@@ -1,6 +1,6 @@
 from decimal import Decimal as dc
 
-def biggerValue(data: dict) -> dict:
+def bigger_value(data: dict) -> dict:
     bigger_data: dict = {}
     
     bigger_data["categoria"] = None
@@ -32,7 +32,7 @@ def analyser(dt: list[dict]):
         # Fim do total
 
     # Maior despesa
-    bigger_data = biggerValue(totals)
+    bigger_data = bigger_value(totals)
     
     # Media
     media = round(total / qtd, 2)

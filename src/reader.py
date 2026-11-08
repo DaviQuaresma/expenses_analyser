@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 
 
-def csvPath(fileName: str) -> Path | None:
+def csv_path(fileName: str) -> Path | None:
 
     if not fileName:
         return None
@@ -18,7 +18,7 @@ def csvPath(fileName: str) -> Path | None:
 
 def reader(documentPath: str) -> list[dict]:
 
-    path = csvPath(documentPath)
+    path = csv_path(documentPath)
 
     if not path:
         print("O arquivo não existe ou não é CSV")
