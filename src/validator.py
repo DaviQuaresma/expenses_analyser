@@ -1,18 +1,18 @@
-import datetime as dt
+import datetime as datet
+from datetime import date
 from decimal import Decimal as dc
 
 
-def change_date(date: str) -> bool:
+def change_date(date: str) -> date | bool:
     format_defined = "%Y-%m-%d"
 
     try:
-        dt.datetime.strptime(date, format_defined).date()
-        return True
+        return datet.datetime.strptime(date, format_defined).date()
     except:
         return False
 
 
-def change_money(money: str) -> dc | bool:
+def parse_money(money: str) -> dc | bool:
 
     try:
         clear_money = money.replace(",", ".")
@@ -29,48 +29,48 @@ def validator(dt: list[dict]):
     errors: list[dict] = []
     line: int = 0
 
-    for data in list(dt):
+    for row in list(dt):
         line += 1
         new_error = {}
 
-        if not data.get("data"):
+        if not row.get("data"):
             new_error["line"] = line
             new_error["field"] = "data"
-            new_error["value"] = data.get("data")
+            new_error["value"] = row.get("data")
             errors.append(new_error)
-            dt.remove(data)
+            dt.remove(row)
             invalid += 1
             continue
 
-        if not data.get("valor"):
+        if not row.get("valor"):
             new_error["line"] = line
             new_error["field"] = "valor"
-            new_error["value"] = data.get("valor")
+            new_error["value"] = row.get("valor")
             errors.append(new_error)
-            dt.remove(data)
+            dt.remove(row)
             invalid += 1
             continue
 
-        if not data.get("descricao"):
+        if not row.get("descricao"):
             new_error["line"] = line
             new_error["field"] = "descricao"
-            new_error["value"] = data.get("descricao")
+            new_error["value"] = row.get("descricao")
             errors.append(new_error)
-            dt.remove(data)
+            dt.remove(row)
             invalid += 1
             continue
 
-        if not data.get("categoria"):
+        if not row.get("categoria"):
             new_error["line"] = line
             new_error["field"] = "categoria"
-            new_error["value"] = data.get("categoria")
+            new_error["value"] = row.get("categoria")
             errors.append(new_error)
-            dt.remove(data)
+            dt.remove(row)
             invalid += 1
             continue
 
-        if "data" in data:
-            date = data["data"]
+        if "data" in row:
+            date = row["data"]
             validate = change_date(date)
 
             if not validate:
@@ -78,26 +78,54 @@ def validator(dt: list[dict]):
                 new_error["field"] = "data"
                 new_error["value"] = date
                 errors.append(new_error)
-                dt.remove(data)
+                dt.remove(row)
                 invalid += 1
                 continue
             else:
-                data["data"] = date
+                row["data"] = validate
 
-        if "valor" in data:
-            money = data["valor"]
-            validate = change_money(money)
+        if "descricao" in row:
+            desc = row["descricao"].strip()
+
+            if len(desc) <= 0:
+                new_error["line"] = line
+                new_error["field"] = "descricao"
+                new_error["value"] = None
+                errors.append(new_error)
+                dt.remove(row)
+                invalid += 1
+                continue
+            else:
+                row["descricao"] = desc
+
+        if "categoria" in row:
+            cat = row["categoria"].strip()
+
+            if len(cat) <= 0:
+                new_error["line"] = line
+                new_error["field"] = "categoria"
+                new_error["value"] = None
+                errors.append(new_error)
+                dt.remove(row)
+                invalid += 1
+                continue
+            else:
+                row["categoria"] = cat
+
+        if "valor" in row:
+            money = row["valor"]
+            validate = parse_money(money)
 
             if not validate:
                 new_error["line"] = line
                 new_error["field"] = "valor"
                 new_error["value"] = money
                 errors.append(new_error)
-                dt.remove(data)
+                dt.remove(row)
                 invalid += 1
                 continue
             else:
-                data["valor"] = validate
+                row["valor"] = validate
 
         valid += 1
 

@@ -13,14 +13,14 @@ def bigger_value(data: dict) -> dict:
     
     return bigger_data
 
-def analyser(dt: list[dict]):
+def analyser(data: list[dict]):
     totals: dict = {}
     total: dc = dc()
-    qtd: dc = dc(len(dt))
+    qtd: dc = dc(len(data))
     
     media: dc = dc()
    
-    for category in dt:
+    for category in data:
         # Agrupa as categorias e seus valores
         key = category["categoria"]
         value = category["valor"]

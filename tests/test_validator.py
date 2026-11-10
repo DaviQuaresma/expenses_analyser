@@ -1,5 +1,5 @@
 import unittest
-from src.validator import change_date, change_money
+from src.validator import change_date, parse_money
 import datetime as dt
 from decimal import Decimal as dc
 
@@ -15,6 +15,6 @@ class TestValidator(unittest.TestCase):
     def test_if_return_valid_money(self):
         money: str = "250,50"
         expect_money = dc(money.replace(",", "."))
-        result = change_money(money)
+        result = parse_money(money)
         
         self.assertEqual(result, expect_money)

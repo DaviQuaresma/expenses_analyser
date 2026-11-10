@@ -3,17 +3,17 @@ from pathlib import Path
 import sys
 
 
-def csv_path(fileName: str) -> Path | None:
+def csv_path(file_name: str) -> Path | None:
 
-    if not fileName:
+    if not file_name:
         return None
 
-    currentPath: Path = Path.cwd() / fileName
+    current_path: Path = Path.cwd() / file_name
 
-    if currentPath.suffix != ".csv" or not currentPath.exists():
+    if current_path.suffix != ".csv" or not current_path.exists():
         return None
 
-    return currentPath
+    return current_path
 
 
 def reader(documentPath: str) -> list[dict]:
@@ -26,8 +26,8 @@ def reader(documentPath: str) -> list[dict]:
 
     dataframe: list[dict] = []
 
-    with open(path, "r", encoding="utf-8", newline="") as csvFile:
-        reader = csv.DictReader(csvFile)
+    with open(path, "r", encoding="utf-8", newline="") as csv_file:
+        reader = csv.DictReader(csv_file)
         for row in reader:
             dataframe.append(row)
 
