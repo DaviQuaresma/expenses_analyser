@@ -173,7 +173,7 @@ O projeto utiliza o módulo `unittest` para executar testes automatizados.
 Na raiz do projeto, execute:
 
 ```bash
-python -m unittest discover -s tests -ve
+python -m unittest discover -s tests -v
 or
 make test
 ```
