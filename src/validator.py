@@ -2,18 +2,24 @@ import datetime as dt
 from decimal import Decimal as dc
 
 
-def change_date(date: str):
+def change_date(date: str) -> bool:
     format_defined = "%Y-%m-%d"
-    format_date = dt.datetime.strptime(date, format_defined).date()
 
-    return format_date
+    try:
+        dt.datetime.strptime(date, format_defined).date()
+        return True
+    except:
+        return False
 
 
-def change_money(money: str) -> dc:
-    clear_money = money.replace(",", ".")
-    money_converted = dc(clear_money)
+def change_money(money: str) -> dc | bool:
 
-    return money_converted
+    try:
+        clear_money = money.replace(",", ".")
+        money_converted = dc(clear_money)
+        return money_converted
+    except:
+        return False
 
 
 def validator(dt: list[dict]):
@@ -35,7 +41,7 @@ def validator(dt: list[dict]):
             dt.remove(data)
             invalid += 1
             continue
-     
+
         if not data.get("valor"):
             new_error["line"] = line
             new_error["field"] = "valor"
@@ -44,7 +50,7 @@ def validator(dt: list[dict]):
             dt.remove(data)
             invalid += 1
             continue
-        
+
         if not data.get("descricao"):
             new_error["line"] = line
             new_error["field"] = "descricao"
@@ -53,7 +59,7 @@ def validator(dt: list[dict]):
             dt.remove(data)
             invalid += 1
             continue
-        
+
         if not data.get("categoria"):
             new_error["line"] = line
             new_error["field"] = "categoria"
@@ -64,12 +70,34 @@ def validator(dt: list[dict]):
             continue
 
         if "data" in data:
-            unformated_date = data["data"]
-            data["data"] = change_date(unformated_date)
+            date = data["data"]
+            validate = change_date(date)
+
+            if not validate:
+                new_error["line"] = line
+                new_error["field"] = "data"
+                new_error["value"] = date
+                errors.append(new_error)
+                dt.remove(data)
+                invalid += 1
+                continue
+            else:
+                data["data"] = date
 
         if "valor" in data:
-            unformated_money = data["valor"]
-            data["valor"] = change_money(unformated_money)
+            money = data["valor"]
+            validate = change_money(money)
+
+            if not validate:
+                new_error["line"] = line
+                new_error["field"] = "valor"
+                new_error["value"] = money
+                errors.append(new_error)
+                dt.remove(data)
+                invalid += 1
+                continue
+            else:
+                data["valor"] = validate
 
         valid += 1
 
