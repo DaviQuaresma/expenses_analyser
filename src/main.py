@@ -11,10 +11,10 @@ def exe():
     
     # Execução do fluxo de dados
     dt = reader(args.filename)
-    validated_dt, valid, invalid = validator(dt)
+    validated_dt, valid, invalid, errors = validator(dt)
     totals, total, media, bigger_data = analyser(validated_dt)
     
-    report(totals, total, media, bigger_data, valid, invalid)
+    report(totals, total, media, bigger_data, valid, invalid, errors)
         
 if __name__ == "__main__":
     exe()
