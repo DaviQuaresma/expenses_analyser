@@ -21,7 +21,7 @@ Este projeto faz parte de uma trilha prática de estudos (*Build to Learn*), com
 
 | Tecnologia | Aplicação |
 |---|---|
-| Python 3.12+ | Linguagem principal |
+| Python 3.10+ | Linguagem principal |
 | `csv` | Leitura de arquivos CSV |
 | `datetime` | Conversão e validação de datas |
 | `decimal` | Operações com valores monetários |
@@ -109,13 +109,13 @@ python -m venv .venv
 
 ### 3. Ativar o ambiente virtual
 
-Linux / macOS:
+**Linux / macOS:**
 
 ```bash
 source .venv/bin/activate
 ```
 
-Windows:
+**Windows:**
 
 ```bash
 .venv\Scripts\activate
@@ -145,7 +145,7 @@ Transacoes inválidas: 0
 
 Total de despesas: R$ 707.30
 Media por transacao: R$ 117.88
-Maior despesa: R$ 463.50
+Maior despesa: R$ 326.40
 
 ----------------------------------
 DESPESAS POR CATEGORIA
@@ -162,7 +162,7 @@ ERROS
 ==============================================
 ```
 
-Os valores são apresentados como exemplo ilustrativo. A maior despesa corresponde ao maior total acumulado entre as categorias.
+Os valores são exemplos ilustrativos. A maior despesa representa o maior total acumulado entre as categorias.
 
 ## Executando os testes
 
@@ -194,6 +194,6 @@ Durante o desenvolvimento deste projeto, foram aplicados conceitos fundamentais 
 
 ---
 
-**Projeto 01 — Trilha de Estudos Python**
+**Projeto prático**
 
-Desenvolvido com foco em aprendizado, prática de programação e consolidação dos fundamentos da linguagem Python.
+Desenvolvido com foco em aprendizado, prática de programação, estruturas de dados e consolidação dos fundamentos da linguagem Python.
