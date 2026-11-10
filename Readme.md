@@ -97,7 +97,7 @@ data,descricao,categoria,valor
 ### 1. Clonar o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/DaviQuaresma/expenses_analyser
 cd expenses_analyser
 ```
 
@@ -127,6 +127,8 @@ A aplicação recebe o caminho do arquivo CSV como argumento obrigatório.
 
 ```bash
 python -m src.main data/despesas.csv
+or
+make run
 ```
 
 O caminho do arquivo é relativo ao diretório em que o comando é executado.
@@ -171,7 +173,9 @@ O projeto utiliza o módulo `unittest` para executar testes automatizados.
 Na raiz do projeto, execute:
 
 ```bash
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -ve
+or
+make test
 ```
 
 Os testes verificam funções relacionadas à conversão de datas, interpretação de valores monetários e identificação do maior valor entre as categorias.
